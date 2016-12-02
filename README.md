@@ -15,4 +15,4 @@ Fetch the current [DayDeal](https://www.daydeal.ch/).
 
 ## Installation
 
-    go install github.com/mhutter/daydeal
+    go get github.com/mhutter/daydeal
