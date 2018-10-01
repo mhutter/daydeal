@@ -27,5 +27,5 @@ func main() {
 
 	fmt.Printf("\n    %s\n    %s\n\n", title, subtitle)
 	fmt.Printf("Für CHF %s anstatt %s\n", price, originalPrice)
-	fmt.Printf("Noch %s%% verfügbar\n", percentage)
+	fmt.Printf("Noch %s verfügbar\n", percentage)
 }
