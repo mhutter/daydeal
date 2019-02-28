@@ -18,14 +18,16 @@ func main() {
 	subtitle := doc.Find(".product-description__title2").First().Text()
 
 	price := doc.Find(".product-pricing__prices-new-price").First().Text()
-	originalPrice := doc.Find("div.originalPrice span").First().Text()
+	originalPrice := doc.Find(".product-pricing__prices-old-price").First().Text()
 	originalPrice = strings.TrimSpace(originalPrice)
-	originalPrice = strings.TrimSuffix(originalPrice, "*")
-	originalPrice = strings.TrimSpace(originalPrice)
+	//extract the external price comparison source (1,2,3)
+	priceSource := originalPrice[len(originalPrice)-1:]
+	//remove the the external price comparison form the price string
+	originalPrice = originalPrice[:len(originalPrice)-1]
 
 	percentage := doc.Find(".product-progress__availability").First().Text()
 
 	fmt.Printf("\n    %s\n    %s\n\n", title, subtitle)
-	fmt.Printf("Für CHF %s anstatt %s\n", price, originalPrice)
+	fmt.Printf("Für %s anstatt %s (%s)\n", price, originalPrice, priceSource)
 	fmt.Printf("Noch %s verfügbar\n", percentage)
 }
