@@ -2,13 +2,21 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
+	"os"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
 func main() {
+	run(os.Stdout)
+}
+
+func run(out io.Writer) {
+	log.SetOutput(out)
+
 	doc, err := goquery.NewDocument("https://www.daydeal.ch/")
 	if err != nil {
 		log.Fatal(err)
@@ -27,7 +35,7 @@ func main() {
 
 	percentage := doc.Find(".product-progress__availability").First().Text()
 
-	fmt.Printf("\n    %s\n    %s\n\n", title, subtitle)
-	fmt.Printf("Für %s %s (%s)\n", price, originalPrice, priceSource)
-	fmt.Printf("Noch %s verfügbar\n", percentage)
+	fmt.Fprintf(out, "\n    %s\n    %s\n\n", title, subtitle)
+	fmt.Fprintf(out, "Für %s %s (%s)\n", price, originalPrice, priceSource)
+	fmt.Fprintf(out, "Noch %s verfügbar\n", percentage)
 }
