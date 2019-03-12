@@ -10,11 +10,12 @@ Fetch the current [DayDeal](https://www.daydeal.ch/).
 
     $ daydeal
 
-        Steuerungszentrale zur Hausautomation
-        Fibaro Home Center Lite
 
-    Für CHF 199.- anstatt CHF 259.-
-    Noch 98% verfügbar
+        Wireless-Powerbank
+        Xtorm Wave XW300
+
+    Für CHF 49.– anstatt statt CHF 88.– (2)
+    Noch 87% verfügbar
 
 
 ## Installation
