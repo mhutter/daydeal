@@ -28,6 +28,6 @@ func main() {
 	percentage := doc.Find(".product-progress__availability").First().Text()
 
 	fmt.Printf("\n    %s\n    %s\n\n", title, subtitle)
-	fmt.Printf("Für %s anstatt %s (%s)\n", price, originalPrice, priceSource)
+	fmt.Printf("Für %s %s (%s)\n", price, originalPrice, priceSource)
 	fmt.Printf("Noch %s verfügbar\n", percentage)
 }
