@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -10,14 +11,32 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-func main() {
-	run(os.Stdout)
+const (
+	urlDay  = "https://www.daydeal.ch/"
+	urlWeek = "https://www.daydeal.ch/deal-of-the-week"
+)
+
+var (
+	fetchDOTW = false
+)
+
+func init() {
+	flag.BoolVar(&fetchDOTW, "w", fetchDOTW, "Fetch the deal of the Week instead")
+	flag.Parse()
 }
 
-func run(out io.Writer) {
+func main() {
+	url := urlDay
+	if fetchDOTW {
+		url = urlWeek
+	}
+	run(os.Stdout, url)
+}
+
+func run(out io.Writer, url string) {
 	log.SetOutput(out)
 
-	doc, err := goquery.NewDocument("https://www.daydeal.ch/")
+	doc, err := goquery.NewDocument(url)
 	if err != nil {
 		log.Fatal(err)
 	}

@@ -17,6 +17,8 @@ Fetch the current [DayDeal](https://www.daydeal.ch/).
     Für CHF 49.– anstatt statt CHF 88.– (2)
     Noch 87% verfügbar
 
+Use the `-w` flag to fetch the "Deal of the Week" instead.
+
 
 ## Installation
 
