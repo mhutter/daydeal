@@ -16,7 +16,7 @@ var testRe = regexp.MustCompile(`\n` +
 	`\n` +
 	`Für CHF [0-9.–]+ statt CHF [0-9.–]+ \(\d\)\n` +
 	`Noch \d+% verfügbar\n` +
-	`Nächster Deal am: \w{3} \w{3} \d{2} \d{2}:\d{2}:\d{2} \(in \d{1,3}h\d\d?m\)`,
+	`Nächster Deal am: \w{3} \w{3} \d{2} \d{2}:\d{2}:\d{2} \(in (\d{1,3}h)?\d\d?m\)`,
 )
 
 func TestRunDay(t *testing.T) {
