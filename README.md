@@ -22,7 +22,7 @@ Use the `-w` flag to fetch the "Deal of the Week" instead.
 
 ## Installation
 
-    go get -u github.com/mhutter/daydeal
+    go get -u github.com/mhutter/daydeal/...
 
 
 ## License
