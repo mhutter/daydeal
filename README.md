@@ -10,19 +10,19 @@ Fetch the current [DayDeal](https://www.daydeal.ch/).
 
     $ daydeal
 
+        Schweizer Armbanduhr
+        Zizzo Classic-Serie
 
-        Wireless-Powerbank
-        Xtorm Wave XW300
-
-    Für CHF 49.– anstatt statt CHF 88.– (2)
-    Noch 87% verfügbar
+    Für CHF 149.– statt CHF 219.– (2)
+    Noch 84% verfügbar
+    Nächster Deal am: Mon Mar 18 08:59:59 (in 11h50m0s)
 
 Use the `-w` flag to fetch the "Deal of the Week" instead.
 
 
 ## Installation
 
-    go get github.com/mhutter/daydeal
+    go get -u github.com/mhutter/daydeal
 
 
 ## License
