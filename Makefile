@@ -5,13 +5,13 @@ NAME = daydeal
 default: test
 
 deps:
-	go get ./...
+	GO111MODULE=on go get ./...
 
 build: deps
-	go build -o ${NAME} ./cmd/daydeal
+	GO111MODULE=on go build -o ${NAME} ./cmd/daydeal
 
 test: deps
-	go test -v -race -cover ./...
+	GO111MODULE=on go test -v -race -cover ./...
 
 run: build
 	./${NAME}
