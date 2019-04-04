@@ -30,6 +30,7 @@ brew:
   github:
     owner: mhutter
     name: homebrew-tap
+  folder: Formula
   homepage: 'https://github.com/mhutter/daydeal'
   description: CLI tool to fetch the current DayDeal
   test: |
