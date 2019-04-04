@@ -20,7 +20,7 @@ type tp struct {
 	VNextDealIn  time.Duration
 }
 
-var printer = daydeal.NewPrinter(tp{
+var deal = tp{
 	VTitle:       "TestTitle",
 	VSubtitle:    "TestSubtitle",
 	VNewPrice:    "TestNewPrice",
@@ -29,7 +29,7 @@ var printer = daydeal.NewPrinter(tp{
 	VPercentage:  "TestPercentage",
 	VNextDeal:    time.Date(2019, 3, 5, 8, 0, 0, 0, time.UTC),
 	VNextDealIn:  13 * time.Hour,
-})
+}
 
 var expectedOutput = `
     TestTitle
@@ -43,7 +43,8 @@ Nächster Deal am: Tue Mar  5 08:00:00 (in 13h0m)
 func TestPrintTo(t *testing.T) {
 	t.Parallel()
 	buf := new(bytes.Buffer)
-	printer.PrintTo(buf)
+
+	daydeal.NewPrinter(buf).Print(deal)
 
 	assert.Equal(t, expectedOutput, buf.String())
 }

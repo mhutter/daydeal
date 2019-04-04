@@ -9,7 +9,7 @@ import (
 
 // Printer is responsible to output a deal to various sources
 type Printer struct {
-	Deal Printable
+	Out io.Writer
 }
 
 // Printable interface defines all methods required to print a deal
@@ -25,20 +25,20 @@ type Printable interface {
 }
 
 // NewPrinter returns a new Printer instance
-func NewPrinter(d Printable) Printer {
-	return Printer{Deal: d}
+func NewPrinter(out io.Writer) *Printer {
+	return &Printer{Out: out}
 }
 
-// PrintTo writes the deal to the Writer given
-func (p Printer) PrintTo(out io.Writer) {
-	fmt.Fprintln(out, "")
-	fmt.Fprintf(out, "    %s\n", p.Deal.Title())
-	fmt.Fprintf(out, "    %s\n", p.Deal.Subtitle())
-	fmt.Fprintln(out, "")
-	fmt.Fprintf(out, "Für %s statt %s (%s)\n",
-		p.Deal.NewPrice(), p.Deal.OldPrice(), p.Deal.PriceSource())
-	fmt.Fprintf(out, "Noch %s verfügbar\n", p.Deal.Percentage())
-	fmt.Fprintf(out, "Nächster Deal am: %s (in %s)\n",
-		p.Deal.NextDeal().Format("Mon Jan _2 15:04:05"),
-		strings.TrimSuffix(p.Deal.NextDealIn().String(), "0s"))
+// Print writes the given deal to p.Out
+func (p Printer) Print(deal Printable) {
+	fmt.Fprintln(p.Out, "")
+	fmt.Fprintf(p.Out, "    %s\n", deal.Title())
+	fmt.Fprintf(p.Out, "    %s\n", deal.Subtitle())
+	fmt.Fprintln(p.Out, "")
+	fmt.Fprintf(p.Out, "Für %s statt %s (%s)\n",
+		deal.NewPrice(), deal.OldPrice(), deal.PriceSource())
+	fmt.Fprintf(p.Out, "Noch %s verfügbar\n", deal.Percentage())
+	fmt.Fprintf(p.Out, "Nächster Deal am: %s (in %s)\n",
+		deal.NextDeal().Format("Mon Jan _2 15:04:05"),
+		strings.TrimSuffix(deal.NextDealIn().String(), "0s"))
 }

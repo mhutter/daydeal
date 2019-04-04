@@ -23,36 +23,33 @@ var testRe = []*regexp.Regexp{
 
 func TestRunDay(t *testing.T) {
 	t.Parallel()
-	testRun(t, []string{})
+	testRun(t, daydeal.URLDaydealDay)
 }
 
 func TestRunWeek(t *testing.T) {
 	t.Parallel()
-	testRun(t, []string{"-w"})
+	testRun(t, daydeal.URLDaydealWeek)
 }
 
-func TestVersion(t *testing.T) {
-	t.Parallel()
-
+func testRun(t *testing.T, url string) {
 	buf := new(bytes.Buffer)
-	daydeal.NewApp(buf).Run([]string{"-v"})
-	assert.Equal(t, "dev, commit none, built on unknown\n", buf.String())
-}
 
-func testRun(t *testing.T, args []string) {
-	buf := new(bytes.Buffer)
-	daydeal.NewApp(buf).Run(args)
+	assert.Nil(t, daydeal.NewApp(buf, url).Run())
+
 	for _, re := range testRe {
 		line, err := buf.ReadString('\n')
 		assert.Nil(t, err)
 		assert.Regexp(t, re, line)
 	}
+
+	// Ensure we're at the end of the buffer
 	_, err := buf.ReadString('\n')
 	assert.Equal(t, io.EOF, err)
 }
 
 func TestFetchDealUnknownKind(t *testing.T) {
 	t.Parallel()
-	_, err := daydeal.FetchDeal(daydeal.Kind(13))
-	assert.EqualError(t, err, "Unknow deal 13")
+	buf := new(bytes.Buffer)
+	err := daydeal.NewApp(buf, "does absolutely not exist").Run()
+	assert.Error(t, err)
 }
