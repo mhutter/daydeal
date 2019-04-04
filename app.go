@@ -20,6 +20,12 @@ const (
 	DaydealWeek
 )
 
+var (
+	version = "dev"
+	commit  = "none"
+	date    = "unknown"
+)
+
 var urls = map[Kind]string{
 	DaydealDay:  "https://www.daydeal.ch/",
 	DaydealWeek: "https://www.daydeal.ch/deal-of-the-week",
@@ -49,12 +55,15 @@ func FetchDeal(k Kind) (deal Daydeal, err error) {
 // Run the Daydeal app
 func (a App) Run(args []string) {
 	var (
-		fs   = flag.NewFlagSet("daydeal", flag.ExitOnError)
-		week = false
-		kind = DaydealDay
+		fs             = flag.NewFlagSet("daydeal", flag.ExitOnError)
+		week           = false
+		displayVersion = false
+		kind           = DaydealDay
 	)
 
 	fs.BoolVar(&week, "w", week, "Fetch deal of the week instead")
+	fs.BoolVar(&displayVersion, "v", displayVersion,
+		"Display program version and exit")
 
 	if err := fs.Parse(args); err != nil {
 		if err == flag.ErrHelp {
@@ -64,6 +73,12 @@ func (a App) Run(args []string) {
 		}
 
 		log.Fatalf("Could not parse flags: %v", err)
+	}
+
+	if displayVersion {
+		fmt.Fprintf(a.Out, "%v, commit %v, built on %v\n",
+			version, commit, date)
+		return
 	}
 
 	if week {

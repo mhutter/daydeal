@@ -31,6 +31,14 @@ func TestRunWeek(t *testing.T) {
 	testRun(t, []string{"-w"})
 }
 
+func TestVersion(t *testing.T) {
+	t.Parallel()
+
+	buf := new(bytes.Buffer)
+	daydeal.NewApp(buf).Run([]string{"-v"})
+	assert.Equal(t, "dev, commit none, built on unknown\n", buf.String())
+}
+
 func testRun(t *testing.T, args []string) {
 	buf := new(bytes.Buffer)
 	daydeal.NewApp(buf).Run(args)
