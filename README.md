@@ -22,7 +22,17 @@ Use the `-w` flag to fetch the "Deal of the Week" instead.
 
 ## Installation
 
+**Homebrew tap** (macOS)
+
+    brew install mhutter/tap/daydeal
+
+
+**go get** (any OS)
+
     go get -u github.com/mhutter/daydeal/...
+
+
+Or [download a pre-built binary](https://github.com/mhutter/daydeal/releases).
 
 
 ## License
