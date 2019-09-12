@@ -1,6 +1,6 @@
 # Go daydeal
 
-[![Build Status](https://travis-ci.com/mhutter/daydeal.svg?branch=master)](https://travis-ci.com/mhutter/daydeal)
+[![CircleCI](https://circleci.com/gh/mhutter/daydeal.svg?style=svg)](https://circleci.com/gh/mhutter/daydeal)
 [![Go Report Card](https://goreportcard.com/badge/github.com/mhutter/daydeal)](https://goreportcard.com/report/github.com/mhutter/daydeal)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
